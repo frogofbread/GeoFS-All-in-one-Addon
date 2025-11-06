@@ -231,7 +231,9 @@ function menus() {
             'Better NAV Map': `Changes the navigation map of GeoFS to another tile provider`,
 
 
-            'Camera cycling': `Randomly cycles through the camera angles for each airplane every 30 seconds. You can toggle this on and off by pressing [W]. By default, it excludes cockpit-less cam, free cam, chase cam and fixed cam.`,
+            'Camera cycling': `
+            ***Disabled due to keybinds interfering with flightradar addon - see github page***
+            Randomly cycles through the camera angles for each airplane every 30 seconds. You can toggle this on and off by pressing [W]. By default, it excludes cockpit-less cam, free cam, chase cam and fixed cam.`,
           
 
             'Charts': `Display airport taxi charts in GeoFS, with a search feature for ICAO codes, fetching data from GitHub.`,
@@ -2307,7 +2309,7 @@ out skel qt;
     adblock();
     autoland();
     athrottle();
-    camera();
+    //camera();
     charts();
     chatFix();
     volume();
