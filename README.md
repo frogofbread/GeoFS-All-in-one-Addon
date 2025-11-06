@@ -1,4 +1,6 @@
 # GeoFS-All-in-one-Addon
+Another note: I've disabled the camera cycling addon for now as its keybind interferes with the flightradar addon that many are using. It will be bound to a different key in the next update, but for now this temporarily fixes the conflict.
+
 Upcoming: another update that will add: Maritime Structures, Geofs Utilities, GeoFS Radio, GeoFS Flightradar, updates to overpowered engines to allow AP at high speeds, possibly a script that increases the steering angle, updated instructions panel, and a few bug fixes. However, please be patient as I don't have much time for development at the moment. <br/>
 
 NOTE: A massive update has just been made, allowing the tampermonkey scripts to run as normal scripts without GM functions. Running the bookmarklet or main.js will have full functionality of the tampermonkey scripts. Also, the addon GeoFS-Chat-Fix has been added, AI ATC now has a toggle so that pressing D can either open the text or voice input, and pressing [/] now toggles autothrottle. Joystick support has also been added to autoland++. See instructions for further details. <br/>
