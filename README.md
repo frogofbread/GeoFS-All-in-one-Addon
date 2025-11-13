@@ -62,6 +62,7 @@ GeoFS-Slew-Mode <br/>
 GeoFS-Taxiway-Lights <br/>
 GeoFS-Taxiway-Signs <br/>
 uiTweaks <br/>
+geofs-utilities <br/>
 ## Other things to check out
 -[GeoFS Flightradar ATC screen] (https://geofs-flightradar.onrender.com) <br/>
 -[Maritime structures location] (google.com/maps/d/u/0/viewer?ll=4.3868333146500404%2C0&z=2&mid=1WGPkTMEBwsjYf4WFaeR4O5DScqzu0Vg) <br/>
@@ -103,3 +104,4 @@ https://github.com/tylerbmusic/GeoFS-Slew-Mode <br/>
 https://github.com/tylerbmusic/GeoFS-Taxiway-Lights <br/>
 https://github.com/tylerbmusic/GeoFS-Taxiway-Signs/tree/main <br/>
 https://github.com/scitor/GeoFS/tree/master/uiTweaks <br/>
+https://github.com/tylerbmusic/geofs-utilities/tree/main <br/>

@@ -368,9 +368,9 @@ function menus() {
             Tilt downL: [↓]`,
 
 
-            'UI tweaks': `Adds a popout chat. Mouse wheel functionality was added to GeoFS natively.
-            
-            `
+            'UI tweaks': `Adds a popout chat. Mouse wheel functionality was added to GeoFS natively.`,
+
+            'Utilities': `Adds various suggestions by bili-開飛機のzm, VR PoZz, bluga4893, and suggestions by discord users (idk who): 10 spoiler positions, a light that you could pretend is a landing light, a key to make the elevator trim match the aileron pitch, smoke, a G-Force Meter, and an AoA meter.`
         };
         
         
@@ -444,6 +444,8 @@ function menus() {
         addAddon('Taxiway lights');
         addAddon('Taxiway signs');
         addAddon('UI tweaks');
+        addAddon('Utilities');
+
 
 
         geofsPreferencesPanel.appendChild(addonListItem);
@@ -1841,7 +1843,7 @@ function addonExecution () {
     };
 
     function maritime () {
-        const maritimeScript = document.createElement('script');maritimeScript.type = 'module';maritimeScript.src = "https://raw.githack.com/CementAndRebar/GeoFS-Extra-Maritime-Structures/refs/heads/main/main.js";document.body.appendChild(maritimeScript);
+        const maritimeScript = document.createElement('script');maritimeScript.type = 'module';maritimeScript.src = "https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/maritimestructures.js";document.body.appendChild(maritimeScript);
     };
 
     function vehicles () {
@@ -1857,7 +1859,7 @@ function addonExecution () {
     };
 
     function flightradar () {
-        var frScript = document.createElement('script'); frScript.src="https://raw.githack.com/geofs-pilot/GeoFS-flightradar/refs/heads/patch-1/userscript.js";document.body.appendChild(frScript);
+        var frScript = document.createElement('script'); frScript.src="https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/flightradar.js";document.body.appendChild(frScript);
     };
 
     function gpws () {
@@ -1865,22 +1867,113 @@ function addonExecution () {
     };
 
     function info () {
-        setInterval(function n(){if(geofs.animation.values){var a,i,e,o=geofs.animation.values.kias?geofs.animation.values.kias.toFixed(1):"N/A",l=geofs.animation.values.mach?geofs.animation.values.mach.toFixed(2):"N/A",t=geofs.animation.values.groundSpeed?geofs.animation.values.groundSpeed.toFixed(1):"N/A",r=geofs.animation.values.altitude?Math.round(geofs.animation.values.altitude):"N/A",d=geofs.animation.values.heading360?Math.round(geofs.animation.values.heading360):"N/A",$=void 0!==geofs.animation.values.altitude&&void 0!==geofs.animation.values.groundElevationFeet?Math.round(geofs.animation.values.altitude-geofs.animation.values.groundElevationFeet+3.2808399*geofs.aircraft.instance.collisionPoints[geofs.aircraft.instance.collisionPoints.length-2].worldPosition[2]):"N/A",s=void 0!==geofs.animation.values.verticalSpeed?Math.round(geofs.animation.values.verticalSpeed):"N/A",p=!1===geofs.aircraft.instance.engine.on?"OFF":void 0!==geofs.animation.values.throttle?geofs.animation.values.throttle<.005&&geofs.animation.values.throttle>=0?"IDLE":(100*geofs.animation.values.throttle).toFixed(0)+"%":"N/A",c=void 0!==geofs.aircraft.instance.angleOfAttackDeg?geofs.aircraft.instance.angleOfAttackDeg.toFixed(1):"N/A";window.DEGREES_TO_RAD=window.DEGREES_TO_RAD||.017453292519943295,window.RAD_TO_DEGREES=window.RAD_TO_DEGREES||57.29577951308232;var $=void 0!==geofs.animation.values.altitude&&void 0!==geofs.animation.values.groundElevationFeet?Math.round(geofs.animation.values.altitude-geofs.animation.values.groundElevationFeet+3.2808399*geofs.aircraft.instance.collisionPoints[geofs.aircraft.instance.collisionPoints.length-2].worldPosition[2]):"N/A";a=geofs.animation.getValue("NAV1Direction")&&600!==geofs.animation.getValue("NAV1Distance")?"to"===geofs.animation.getValue("NAV1Direction")?(Math.atan(.3048*$/(geofs.animation.getValue("NAV1Distance")+600))*RAD_TO_DEGREES).toFixed(1):(Math.atan(.3048*$/Math.abs(geofs.animation.getValue("NAV1Distance")-600))*RAD_TO_DEGREES).toFixed(1):"N/A";var u=geofs.animation.values.loadFactor.toFixed(1);i=!0==globalThis.isOverpowered?"ON":"OFF",e=!0==globalThis.cycling?"ON":"OFF";var _=globalThis.fuelPercentage,b=void 0!==_?0===_?"0%":_<1?"1%":_.toFixed(0)+"%":"N/A";let g=document.querySelector(".geofs-ui-bottom");if(g){var y=document.getElementById("flightDataDisplay");y||((y=document.createElement("div")).id="flightDataDisplay",y.style.height="36px",y.style.minWidth="64px",y.style.padding="0 16px",y.style.display="inline-block",y.style.fontFamily='"Roboto", "Helvetica", "Arial", sans-serif',y.style.fontSize="14px",y.style.fontWeight="500",y.style.textTransform="uppercase",y.style.overflow="hidden",y.style.willChange="box-shadow",y.style.transition="box-shadow .2s cubic-bezier(.4,0,1,1), background-color .2s cubic-bezier(.4,0,.2,1), color .2s cubic-bezier(.4,0,.2,1)",y.style.textAlign="center",y.style.lineHeight="36px",y.style.verticalAlign="middle",y.style.pointerEvents="none",document.body.appendChild(y))}g.appendChild(y),y.innerHTML=`
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">KIAS ${o}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">Mach ${l}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">GS ${t}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">ALT ${r}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">AGL ${$}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">HDG ${d}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">V/S ${"N/A"===s?"N/A":s}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">THR ${p}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">AOA ${c}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">GSLOPE ${a}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">G ${u}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">OP ${i}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">CC ${e}</span>|
-                <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">FUEL ${b}</span>
-            `,flight.recorder.playing?y.style.display="none":y.style.display="inline-block"}},100);
+       (function() {
+        'use strict';
+
+        // Update display
+        function updateFlightDataDisplay() {
+            // Check if geofs.animation.values is available
+            if (geofs.animation.values) {
+                // Get and format the values
+                var kias = geofs.animation.values.kias ? geofs.animation.values.kias.toFixed(1) : 'N/A';
+                var mach = geofs.animation.values.mach ? geofs.animation.values.mach.toFixed(2) : 'N/A';
+                var groundSpeed = geofs.animation.values.groundSpeed ? geofs.animation.values.groundSpeed.toFixed(1) : 'N/A';
+                var altitude = geofs.animation.values.altitude ? Math.round(geofs.animation.values.altitude) : 'N/A';
+                var heading = geofs.animation.values.heading360 ? Math.round(geofs.animation.values.heading360) : 'N/A';
+                var agl = (geofs.animation.values.altitude !== undefined && geofs.animation.values.groundElevationFeet !== undefined) ? Math.round((geofs.animation.values.altitude - geofs.animation.values.groundElevationFeet) + (geofs.aircraft.instance.collisionPoints[geofs.aircraft.instance.collisionPoints.length - 2].worldPosition[2]*3.2808399)) : 'N/A';
+                var verticalSpeed = geofs.animation.values.verticalSpeed !== undefined ? Math.round(geofs.animation.values.verticalSpeed) : 'N/A';
+                var throttle = geofs.aircraft.instance.engine.on === false ? 'OFF' : geofs.animation.values.throttle !== undefined ? (geofs.animation.values.throttle < 0.005 && geofs.animation.values.throttle >= 0 ? 'IDLE' : (geofs.animation.values.throttle * 100).toFixed(0) + '%') : 'N/A';
+                var aoa = geofs.aircraft.instance.angleOfAttackDeg !== undefined? geofs.aircraft.instance.angleOfAttackDeg.toFixed(1) : 'N/A' ;
+                window.DEGREES_TO_RAD = window.DEGREES_TO_RAD || 0.017453292519943295769236907684886127134428718885417254560971914401710091146034494436822415696345094822123044925073790592483854692275281012398474218934047117319168245015010769561697553581238605305168789;
+                window.RAD_TO_DEGREES = window.RAD_TO_DEGREES || 57.295779513082320876798154814105170332405472466564321549160243861202847148321552632440968995851110944186223381632864893281448264601248315036068267863411942122526388097467267926307988702893110767938261;
+                var agl = (geofs.animation.values.altitude !== undefined && geofs.animation.values.groundElevationFeet !== undefined) ? Math.round((geofs.animation.values.altitude - geofs.animation.values.groundElevationFeet) + (geofs.aircraft.instance.collisionPoints[geofs.aircraft.instance.collisionPoints.length - 2].worldPosition[2]*3.2808399)) : 'N/A';
+                    var glideslope;
+                    if (geofs.animation.getValue("NAV1Direction") && (geofs.animation.getValue("NAV1Distance") !== 600)) { //The second part to the if statement prevents the divide by 0 error.
+                        glideslope = (geofs.animation.getValue("NAV1Direction") === "to") ? (Math.atan((agl*0.3048) / (geofs.animation.getValue("NAV1Distance")+600))*RAD_TO_DEGREES).toFixed(1) : (Math.atan((agl*0.3048) / Math.abs(geofs.animation.getValue("NAV1Distance")-600))*RAD_TO_DEGREES).toFixed(1); //The center of the aiming point is exactly 600 meters from the start of the runway (in GeoFS).
+                    } else {
+                        glideslope = 'N/A';
+                    }
+
+                var gforce = geofs.animation.values.loadFactor.toFixed(1)
+                var overpowered = globalThis.isOverpowered;
+                var op;
+                    if (overpowered == true) {
+                        op = 'ON';
+                    } else {
+                        op = 'OFF';
+                    }
+                var camCycling = globalThis.cycling;
+                var cc;
+                    if (camCycling == true) {
+                        cc = 'ON';
+                    } else {
+                        cc = 'OFF';
+                    }
+                var fuelValue = globalThis.fuelPercentage;
+                var fuelPercentage = (fuelValue !== undefined)
+                    ? (fuelValue === 0
+                        ? '0%'
+                        : (fuelValue < 1 ? '1%' : fuelValue.toFixed(0) + '%'))
+                    : 'N/A';
+
+
+                // Display css
+            let geofsUI = document.querySelector(".geofs-ui-bottom");
+            if (geofsUI) {
+                var flightDataElement = document.getElementById('flightDataDisplay');
+                if (!flightDataElement) {
+                    flightDataElement = document.createElement('div');
+                    flightDataElement.id = 'flightDataDisplay';
+                    flightDataElement.style.height = '36px';
+                    flightDataElement.style.minWidth = '64px';
+                    flightDataElement.style.padding = '0 16px';
+                    flightDataElement.style.display = 'inline-block';
+                    flightDataElement.style.fontFamily = '"Roboto", "Helvetica", "Arial", sans-serif';
+                    flightDataElement.style.fontSize = '14px';
+                    flightDataElement.style.fontWeight = '500';
+                    flightDataElement.style.textTransform = 'uppercase';
+                    flightDataElement.style.overflow = 'hidden';
+                    flightDataElement.style.willChange = 'box-shadow';
+                    flightDataElement.style.transition = 'box-shadow .2s cubic-bezier(.4,0,1,1), background-color .2s cubic-bezier(.4,0,.2,1), color .2s cubic-bezier(.4,0,.2,1)';
+                    flightDataElement.style.textAlign = 'center';
+                    flightDataElement.style.lineHeight = '36px';
+                    flightDataElement.style.verticalAlign = 'middle';
+                    flightDataElement.style.pointerEvents = 'none'; // Make the display clickable through
+                    document.body.appendChild(flightDataElement);
+                }
+    }
+                    geofsUI.appendChild(flightDataElement),
+
+
+
+                flightDataElement.innerHTML = `
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">KIAS ${kias}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">Mach ${mach}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">GS ${groundSpeed}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">ALT ${altitude}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">AGL ${agl}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">HDG ${heading}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">V/S ${verticalSpeed === 'N/A' ? 'N/A' : verticalSpeed}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">THR ${throttle}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">AOA ${aoa}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">GSLOPE ${glideslope}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">G ${gforce}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">OP ${op}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">CC ${cc}</span>|
+                    <span style="background: 0 0; border: none; border-radius: 2px; color: #000; display: inline-block; padding: 0 8px;">FUEL ${fuelPercentage}</span>
+                `;
+                if (flight.recorder.playing) {
+                    flightDataElement.style.display = "none";
+                } else {
+                    flightDataElement.style.display = "inline-block";
+                }
+            }
+        }
+        // Update flight data display every 100ms
+        setInterval(updateFlightDataDisplay, 100);
+
+    })();
+
     };
 
     function jetbridge () {
@@ -1964,7 +2057,7 @@ out skel qt;
     };
 
     function pushback () {
-        !function($,x){let a=_0x5694,e=$();for(;;)try{let t=parseInt(a(299))/1*(parseInt(a(291))/2)+-parseInt(a(377))/3+-parseInt(a(365))/4+parseInt(a(328))/5+-parseInt(a(292))/6*(-parseInt(a(315))/7)+parseInt(a(372))/8*(-parseInt(a(364))/9)+-parseInt(a(346))/10*(-parseInt(a(295))/11);if(648459===t)break;e.push(e.shift())}catch(_){e.push(e.shift())}}(_0x1c81,648459);let itv=setInterval(function(){try{window.ui&&window.flight&&(main(),getData(),clearInterval(itv))}catch($){}},500),defaultFriction,pushbackInfo,pushbackModels;async function getData(){let $=_0x5694;await fetch("https://raw.githubusercontent.com/TotallyRealElonMusk/GeoFS-Pushback/main/pushback%20data/pushback.json")[$(375)](x=>x[$(316)]())[$(375)]($=>pushbackInfo=$);await fetch($(312))[$(375)]($=>$.json()).then($=>pushbackModels=$)}function _0x5694($,x){let a=_0x1c81();return(_0x5694=function($,x){return a[$-=291]})($,x)}function main(){let $=_0x5694;window[$(340)]={},pushback[$(370)]=0,pushback[$(349)]=0,pushback[$(368)]=function(x){let a=$;pushback[a(370)]=x,.5===x&&(x=1),-.5===x&&(x=-1),pushback[a(301)]&&clearInterval(pushback.lockInt),pushback.lockInt=setInterval(function(){pushback[a(308)](x)})},pushback.stopBack=function(){let x=$;clearInterval(pushback[x(301)]),pushback[x(370)]=0,pushback.pushBack(0),clearInterval(pushback[x(301)])},pushback[$(308)]=function(x){let a=$,e=Math.round(window.geofs.animation.values[a(311)]);geofs[a(355)].instance[a(363)].setLinearVelocity([x*Math[a(324)](e*Math.PI/180),x*Math[a(337)](e*Math.PI/180),0])},pushback[$(367)]=function(x){let a=$;pushback[a(349)]=x,geofs[a(298)].values[a(321)]=x};let x;pushback[$(332)]=!1,pushback.checkAircraft=function($){return!!pushbackInfo[$]},pushback[$(296)]=function(){let x=$;for(let a=0;a<geofs[x(355)].instance[x(354)][x(303)][x(330)];a++)if(geofs[x(355)][x(359)][x(354)][x(303)][a][x(306)])for(let e=0;e<geofs[x(355)][x(359)][x(354)][x(303)][a].animations[x(330)];e++)geofs[x(355)][x(359)][x(354)][x(303)][a][x(306)][e].value==x(349)&&(geofs[x(355)].instance.setup.parts[a][x(306)][e][x(342)]="yawPushback",geofs[x(355)][x(359)][x(354)][x(303)][a][x(335)]&&(pushback[x(334)]=geofs[x(355)][x(359)][x(354)].parts[a].animations[e].ratio))},pushback[$(373)]=function(){let x=$;clearInterval(pushback[x(301)]),window.geofs.aircraft[x(359)].setup.contactProperties[x(369)][x(376)]=defaultFriction;for(let a=0;a<geofs[x(355)][x(359)].setup.parts.length;a++)if(window.geofs.aircraft.instance.setup.parts[a].animations)for(let e=0;e<geofs[x(355)][x(359)][x(354)][x(303)][a].animations[x(330)];e++)window.geofs.aircraft[x(359)][x(354)][x(303)][a][x(306)][e][x(342)]==x(321)&&(window.geofs.aircraft.instance[x(354)][x(303)][a][x(306)][e][x(342)]=x(349))},pushback[$(317)]=function(){pushback.addPushBackTruck()},pushback[$(350)]=function(){let x=$;if(pushbackInfo[window.geofs.aircraft[x(359)].id]){let a={name:x(331),model:pushbackModels[pushbackInfo[window.geofs.aircraft[x(359)].id][x(339)]],position:pushbackInfo[geofs[x(355)][x(359)].id][x(319)],animations:[{type:x(351),axis:"Z",value:x(321),ratio:pushback.defaultYaw},{value:x(309),type:x(343),value:x(348)},{type:x(351),value:"atilt",axis:"X",ratio:-1}],rotation:[0,0,0]};geofs[x(355)][x(359)][x(323)]([a],x(336),1,x(366))}};let a=document.getElementsByClassName("geofs-autopilot-bar"),e=document[$(327)]($(320));e[$(341)].add($(356)),e.id=$(300),e.style[$(318)]=$(357),e[$(305)]=$(314),a[0][$(347)](e);document[$(362)]($(300))[$(293)]=function(){!function a(){let e=$;void 0!=x&&x[e(338)](),(x=window[e(352)]("",e(374),"toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,resizable=no,width=780,height=300,top="+(screen[e(358)]-400)+e(307)+(screen[e(322)]-840)))[e(345)][e(326)][e(305)]=e(297);let t=x[e(345)][e(362)](e(349)),_=x.document[e(362)](e(370)),n=x[e(345)][e(362)](e(340)),i=x[e(345)][e(362)]("reset"),o=x[e(345)][e(362)](e(294)),s=x[e(345)].getElementById(e(361));_[e(333)]=function(){let $=e;!0==pushback[$(332)]&&(pushback[$(368)]((parseInt(this[$(342)])-40)/2),o[$(305)]=(parseInt(this.value)-40)/2)},t[e(333)]=function(){let $=e;!0==pushback[$(332)]&&(pushback[$(367)]((parseInt(this.value)-50)/50),s[$(305)]=(parseInt(this[$(342)])-50)/50)},n[e(333)]=async function(){let $=e;!1===pushback.pushBackState?!0===pushback[$(304)](geofs[$(355)][$(359)].id)&&!0==geofs[$(355)][$(359)][$(353)]&&geofs[$(298)][$(360)].rollingSpeed<.5&&(await pushback.setUpdate(),pushback[$(317)](),pushback[$(332)]=!0,geofs[$(298)][$(360)].pushBackTruck=1,defaultFriction=geofs[$(355)][$(359)].setup[$(310)][$(369)].lockSpeed,geofs[$(355)][$(359)].setup[$(310)][$(369)][$(376)]=.5):(pushback[$(332)]=!1,geofs[$(298)].values[$(348)]=0,window.geofs.aircraft[$(359)][$(303)].pushbackTruck[$(344)][$(313)](),pushback[$(373)](),pushback[$(325)](),i[$(293)]())},i.onclick=function(){let $=e;t[$(342)]="50",s[$(305)]="0",_[$(342)]="40",o[$(305)]="0",pushback[$(325)](),pushback[$(368)](0),pushback[$(325)](),pushback.startYaw(0)},x[e(371)]=function(){let $=e;pushback[$(332)]=!1,window.geofs.animation[$(360)].pushBackTruck=0,geofs[$(355)][$(359)][$(303)].pushbackTruck.object3d[$(313)](),pushback[$(373)](),pushback[$(325)](),i[$(293)]()},x[e(329)]("keydown",function($){let x=e;if(38===$[x(302)]&&pushback.speed<20){let a=pushback[x(370)]+.5;pushback.startBack(a),o.innerHTML=a,_[x(342)]=2*a+40}else if(40===$[x(302)]&&pushback[x(370)]>-20){let n=pushback[x(370)]-.5;pushback[x(368)](n),o[x(305)]=n,_[x(342)]=2*n+40}else if(39===$.keyCode&&pushback[x(349)]<1){let i=Math[x(378)]((pushback[x(349)]+.02)*100)/100;pushback[x(367)](i),s[x(305)]=i,t[x(342)]=50*i+50}else if(37===$[x(302)]&&pushback[x(349)]>-1){let c=Math[x(378)]((pushback[x(349)]-.02)*100)/100;pushback[x(367)](c),s[x(305)]=c,t[x(342)]=50*c+50}})}()}}function _0x1c81(){let $=["then","lockSpeed","1258782BnpTvr","round","6TtZgaV","12AvIPhZ","onclick","speedInfo","319TOOmos","setUpdate",'<style>\n.slidecontainer {\n  width: 100%;\n  /* Width of the outside container */\n}\n\n/* The slider itself */\n.slider {\n  -webkit-appearance: none;\n  /* Override default CSS styles */\n  appearance: none;\n  width: 50%;\n  /* Full-width */\n  height: 25px;\n  /* Specified height */\n  background: #d3d3d3;\n  /* Grey background */\n  outline: none;\n  /* Remove outline */\n  opacity: 0.7;\n  /* Set transparency (for mouse-over effects on hover) */\n  -webkit-transition: .2s;\n  /* 0.2 seconds transition on hover */\n  transition: opacity .2s;\n}\n\n/* Mouse-over effects */\n.slider:hover {\n  opacity: 1;\n  /* Fully shown on mouse-over */\n}\n\n/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */\n.slider::-webkit-slider-thumb {\n  -webkit-appearance: none;\n  /* Override default look */\n  appearance: none;\n  width: 25px;\n  /* Set a specific slider handle width */\n  height: 25px;\n  /* Slider handle height */\n  background: #04AA6D;\n  /* Green background */\n  cursor: pointer;\n  /* Cursor on hover */\n}\n\n.slider::-moz-range-thumb {\n  width: 25px;\n  /* Set a specific slider handle width */\n  height: 25px;\n  /* Slider handle height */\n  background: #04AA6D;\n  /* Green background */\n  cursor: pointer;\n  /* Cursor on hover */\n}\n\n.center {\n  font-family: verdana;\n  display: center;\n}\n</style>\n<input type="checkbox" id="pushback" name="pushback" value="pushback" class="center"></input>\n<labelfor="pushback" class="center"> Toggle pushback </label></p> Yaw:\n<div id="yawInfo">0</div>\n<div class="slidecontainer">\n  <input type="range" min="0" max="100" value="50" class="slider" id="yaw">\n  </p> Speed: <div id="speedInfo">0</div>\n  <div class="slidecontainer">\n    <input type="range" min="0" max="80" value="40" class="slider" id="speed">\n    </p>\n    <button class="center" type="button" id="reset">Reset</button>\n    <br>\n  </div>',"animation","363367mttbUH","pushbackButtonMain","lockInt","keyCode","parts","checkAircraft","innerHTML","animations",",left=","pushBack","view","contactProperties","heading360","https://raw.githubusercontent.com/TotallyRealElonMusk/GeoFS-Pushback/main/pushback%20data/pushbackModel.json","destroy",'<div style="line-height: 27px;font-size: 12px !important;pointer-events: none;color: #FFF;text-align: center;">PUSHBACK</div>',"4303656PWCiJH","json","addPushBackTruckHandler","cssText","pos","div","yawPushback","width","addParts","sin","stopBack","body","createElement","1931860IqPriw","addEventListener","length","pushbackTruck","pushBackState","oninput","defaultYaw","collisionPoints","https://raw.githubusercontent.com/","cos","close","model","pushback","classList","value","show","object3d","document","75250HvkrXo","append","pushBackTruck","yaw","addPushBackTruck","rotate","open","groundContact","setup","aircraft","control-pad","width: 90px;height: 25px;margin: 0px 10px;border-radius: 15px;outline: none;","height","instance","values","yawInfo","getElementById","rigidBody","324036SVkzvQ","4544724bXaXlh","Zup","startYaw","startBack","wheel","speed","onbeforeunload","160yAxlOT","revertUpdate","Title"];return(_0x1c81=function(){return $})()}
+        var pushbackScript = document.createElement('script'); pushbackScript.src="https://raw.githack.com/CementAndRebar/GeoFS-Pushback/refs/heads/main/main.js";document.body.appendChild(pushbackScript);
     };
 
     function realism () {
@@ -1973,11 +2066,11 @@ out skel qt;
     
     function dolly () {
         var dollyScript = document.createElement('script'); dollyScript.src="https://raw.githack.com/tylerbmusic/GeoFS-Sky-Dolly/main/userscript.js";document.body.appendChild(dollyScript);
-            };
+    };
 
     function slew () {
         var slewScript = document.createElement('script'); slewScript.src="https://raw.githack.com/tylerbmusic/GeoFS-Slew-Mode/main/userscript.js";document.body.appendChild(slewScript);
-            };
+    };
 
     function twlights () {
         var twlScript = document.createElement('script'); twlScript.src="https://raw.githack.com/tylerbmusic/GeoFS-Taxiway-Lights/main/userscript.js";document.body.appendChild(twlScript);
@@ -1990,15 +2083,19 @@ out skel qt;
     function tweaks () {
         const POPOUT_CHAT=!0;!function e(){"use strict";if(!window.jQuery)return setTimeout(e,1e3);{let t=$('<button class="mdl-button mdl-js-button mdl-button--icon" tabindex="0"><i class="material-icons">text_fields</i></button>')[0];document.querySelectorAll(".geofs-button-mute").forEach(e=>e.parentNode.appendChild(t));let o,n,a;t.onclick=function(){n=(a=document.querySelector(".geofs-chat-messages")).parentNode,(o=window.open("about:blank","_blank","height=580, width=680, popup=1")).document.body.append(a),o.document.head.append($("<title>GeoFS - Chat</title>")[0]),o.document.head.append($("<style>.geofs-chat-message{opacity:1!important;font-family:sans-serif;}</style>")[0]),o.onbeforeunload=()=>n.append(a)},window.onbeforeunload=()=>o&&o.close()}}();
     }
+
+    function utilities() {
+        var utilScript = document.createElement('script'); utilScript.src="https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/utilities.js";document.body.appendChild(utilScript);
+    }
     ai();
     adblock();
     autoland();
     athrottle();
     camera();
-    charts();
+    //charts(); temporarily broken
     chatFix();
     volume();
-    //maritime();
+    maritime();
     failuresAndFuel();
     fpv();
     flightradar();
@@ -2011,6 +2108,7 @@ out skel qt;
     twlights();
     twsigns();
     tweaks();
+    utilities();
     info();
 
     //wait for jobs button to appear
