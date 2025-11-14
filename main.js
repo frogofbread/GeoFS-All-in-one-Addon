@@ -1316,7 +1316,6 @@ function menus() {
             Other improvements:
             Pushback addon uses original script (previously it was a modified version)
             New Overpowered Engines with a roll and pitch oscillation damper
-            Moved all modified/original externals to a dedicated repository
             `
         };
 
