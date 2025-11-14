@@ -75,6 +75,7 @@ geofs-utilities <br/>
 -https://www.helisimmer.com/how-to-fly-helicopters
 ## Credits
 Some procedures were written with the help of ChatGPT. <br/>
+Some of the addon instructions are from Discord discussions. <br/>
 https://sites.google.com/view/geofs-flights-channel/flight-procedures <br/>
 https://github.com/avramovic/GeoFS-AI-ATC/tree/master <br/>
 https://github.com/RadioactivePotato/GeoFS-Ad-Remover/tree/main <br/>

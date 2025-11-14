@@ -251,7 +251,7 @@ function menus() {
             This addon also features catapults for the F-16, F-14, and E-2C Hawkeye. It is a modified version of Arikiam's catapult addon which he gratefully let me use. To use it, press Q to lower your (fictif) launch bar. A green LAUNCH BAR DOWN above your flaps indicator (bottom right of your window) will turn on to tell you it's down. Advance to the catapult. Positions are defined and precise for each aircraft and have an standard uncertainty of 4 meters and 5 degrees. Once in position, press / to lock the launch bar in the catapult. This time, a red READY TO LAUNCH will appear on the bottom right of your screen. You are now ready to launch. Press L to launch.
             Enjoy!
 
-            Find the structure locations here! `,
+            Find the structure locations here! (INSERT THE LINK) `,
 
 
             'Extra vehicles': `Extra vehicles in GeoFS presented by JXT`,
@@ -370,7 +370,10 @@ function menus() {
 
             'UI tweaks': `Adds a popout chat. Mouse wheel functionality was added to GeoFS natively.`,
 
-            'Utilities': `Adds various suggestions by bili-開飛機のzm, VR PoZz, bluga4893, and suggestions by discord users (idk who): 10 spoiler positions, a light that you could pretend is a landing light, a key to make the elevator trim match the aileron pitch, smoke, a G-Force Meter, and an AoA meter.`
+            'Utilities': `Adds various suggestions by bili-開飛機のzm, VR PoZz, bluga4893, and suggestions by discord users (idk who): 10 spoiler positions, a light that you could pretend is a landing light, a key to make the elevator trim match the aileron pitch, smoke, a G-Force Meter, and an AoA meter.
+            GGamergguy explains the trim feature: In the real world, it takes a lot of force to pull on the yoke/stick while in the air. So, pilots trim their aircraft so they only have to make very minor adjustments. They do this during the climb, cruise, descent, and landing phases of flight.
+            Normally, pilots will gradually add elevator trim while slowly letting go of the yoke, to keep the plane stable. In GeoFS, however, this can be hard sometimes, so I added a feature to match the elevator input with the trim. It senses the elevator input (ex. full up), and adds that amount of elevator trim (ex. full up trim). When you release all elevator input, it acts like you have the same amount of elevator input as when you pressed the keybind ('w' by default).
+            To use it, find the elevator input amount that makes the plane stable, then press the keybind and release the elevator input (let go of the joystick, or bring the mouse to the center of the screen).`
         };
         
         
@@ -596,9 +599,10 @@ function menus() {
 
 
             'Other rules, METAR, sectional charts, airspace': `
-            Speed limits: 
+            Speed limits: (can be overriden by ATC)
+            200kts below 3000AGL within 10nm of an airport 
             250 kts below FL100
-            Mach 1 above FL100
+            Mach 1 above  (over US)
             No person may operate an aircraft beneath Class B airspace, or in a VFR corridor through Class B, at an indicated airspeed of more than 200 knots
             No person may operate an aircraft at an indicated airspeed of more than 200 knots at or below 2,500 feet above the surface, within 4 nautical miles of the primary Class C or Class D airport.
             UNLESS: the minimum safe speed of an operation exceeds the speed limit, in which case a pilot can fly at that minimum speed.
@@ -1204,7 +1208,17 @@ function menus() {
 
             //RESOURCES GO HERE:
         const descriptions = {
-            'Electrical': ``,
+            'Addon links': `-[GeoFS Flightradar ATC screen] (https://geofs-flightradar.onrender.com) <br/>
+            -[Maritime structures location] (google.com/maps/d/u/0/viewer?ll=4.3868333146500404%2C0&z=2&mid=1WGPkTMEBwsjYf4WFaeR4O5DScqzu0Vg) <br/> (NOT HTML FORMATTTED)`,
+
+            'Flight planning' : `-[FMC route collection](http://sites.google.com/view/gpg-2-0/home?authuser=0) <br/>
+            -https://skyvector.com/<br/>
+            -[Simbrief](https://dispatch.simbrief.com/home) <br/>
+            -https://opennav.com/ <br/>
+            -https://www.openaip.net/ <br/>
+            -https://www.aviationhunt.com/ <br/>`,
+
+            'Tutorials' : `-https://www.helisimmer.com/how-to-fly-helicopters`
         };
 
 
@@ -1248,15 +1262,115 @@ function menus() {
             resourceListItem.appendChild(resourceContent);
         }
         //RESOURCE ITEMS HERE:
-        addresource('Electrical');
+        addresource('Addon links');
+        addresource('Flight planning');
+        addresource('Tutorials');
+
        
         geofsPreferencesPanel.appendChild(resourceListItem);
+    }
+    function createchangelogs() {
+        const geofsPreferencesPanel = document.querySelector('.geofs-list.geofs-toggle-panel.geofs-preference-list');
+
+
+        const changelogListItem = document.createElement('li');
+        changelogListItem.className = 'geofs-list-collapsible-item';
+        changelogListItem.innerText = 'Changelogs';
+
+
+
+
+        const dropdownIcon = document.createElement('li');
+        dropdownIcon.className = 'geofs-collapsible-item::before';
+        dropdownIcon.style.marginRight = '5px';
+
+
+        changelogListItem.appendChild(dropdownIcon);
+
+
+        const changelogContent = document.createElement('div');
+
+
+        changelogContent.className = 'geofs-list';
+        changelogContent.style.display = 'none';
+
+
+        changelogListItem.appendChild(changelogContent);
+
+
+        changelogListItem.onclick = () => {
+            const isVisible = changelogContent.style.display === 'block';
+            changelogContent.style.display = isVisible ? 'none' : 'block';
+            dropdownIcon.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(90deg)';
+        };
+
+        const descriptions = {
+            'Version 3.0.0': `New addons:
+            GeoFS Flightradar added
+            Modified GeoFS Utilities added 
+            Maritime Structures added
+            Updated info panel:
+            Resources panel
+            Changelog panel
+            Update to Other Rules section
+            Other improvements:
+            Pushback addon uses original script (previously it was a modified version)
+            New Overpowered Engines with a roll and pitch oscillation damper
+            Moved all modified/original externals to a dedicated repository
+            `
+        };
+
+
+        function addchangelog(name) {
+            const descriptionText = descriptions[name] || 'No description available.';
+            const changelogItem = document.createElement('ul');
+            changelogItem.className = 'no-hover geofs-list-collapsible-item geofs-hideForApp';
+            changelogItem.style.position = 'relative';
+            changelogItem.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
+            changelogItem.innerText = name;
+
+
+            const descDropdownIcon = document.createElement('li');
+            descDropdownIcon.className = 'geofs-collapsible-item::before';
+            descDropdownIcon.style.marginRight = '5px';
+
+
+            const description = document.createElement('li');
+            description.className = 'geofs-list-item-description';
+            description.innerHTML = descriptionText;
+            description.style.display = 'none';
+            description.style.lineHeight = '1.1';
+            description.style.paddingRight = '15px';
+
+
+
+
+            changelogItem.onclick = (event) => {
+                event.stopPropagation();
+                const descIsVisible = description.style.display === 'block';
+                description.style.display = descIsVisible ? 'none' : 'block';
+                descDropdownIcon.style.transform = descIsVisible ? 'rotate(0deg)' : 'rotate(90deg)';
+                const isVisible = changelogContent.style.display === 'block';
+                changelogContent.style.display = isVisible ? 'none' : 'block';
+                dropdownIcon.style.transform = isVisible ? 'rotate(0deg)' : 'rotate(90deg)';
+            };
+
+
+            changelogItem.appendChild(description);
+            changelogListItem.appendChild(changelogItem);
+            changelogListItem.appendChild(changelogContent);
+        }
+        //changelog ITEMS HERE:
+        addchangelog('Version 3.0.0');
+
+        geofsPreferencesPanel.appendChild(changelogListItem);
     }
     
     createAddonManager();
     createInstructions();
     createFailures();
     createResources();
+    createchangelogs();
 };
 
 
@@ -2053,7 +2167,160 @@ out skel qt;
     };
 
     function opengines () {
-        function toggleAircraftProperties(){globalThis.isOverpowered=!1;let t={thrust:{},zeroThrustAltitude:null,zeroRPMAltitude:null},r=geofs?.aircraft?.instance?.aircraftRecord?.id||null,e=geofs.aircraft.instance.definition.mass;document.addEventListener("keydown",function(r){"q"!==r.key.toLowerCase()||r.ctrlKey||r.altKey||r.metaKey||(globalThis.isOverpowered?(function r(){if(geofs?.aircraft?.instance){let e=geofs.aircraft.instance;if(e.definition&&(null!==t.zeroThrustAltitude&&(e.definition.zeroThrustAltitude=t.zeroThrustAltitude),null!==t.zeroRPMAltitude&&(e.definition.zeroRPMAltitude=t.zeroRPMAltitude)),e.parts)for(let i in t.thrust){let u=e.parts[i];u?.thrust!==void 0&&(u.thrust=t.thrust[i].thrust,void 0!==u.afterBurnerThrust&&null!==t.thrust[i].afterBurnerThrust&&(u.afterBurnerThrust=t.thrust[i].afterBurnerThrust),void 0!==u.reverseThrust&&null!==t.thrust[i].reverseThrust&&(u.reverseThrust=t.thrust[i].reverseThrust))}}}(),globalThis.isOverpowered=!1,console.log("Aircraft properties set to normal.")):(function r(){if(geofs?.aircraft?.instance){let i=geofs.aircraft.instance;if(e=i.definition.mass,null===t.zeroThrustAltitude&&i.definition?.zeroThrustAltitude!==void 0&&(t.zeroThrustAltitude=i.definition.zeroThrustAltitude),null===t.zeroRPMAltitude&&i.definition?.zeroRPMAltitude!==void 0&&(t.zeroRPMAltitude=i.definition.zeroRPMAltitude),i.definition&&(i.definition.zeroThrustAltitude=3e5,i.definition.zeroRPMAltitude=3e5),i.parts)for(let u in i.parts){let s=i.parts[u];if(s?.thrust!==void 0){t.thrust[u]||(t.thrust[u]={thrust:s.thrust,afterBurnerThrust:s.afterBurnerThrust||null,reverseThrust:s.reverseThrust||null});let n,o,l;n=6*Number(t.thrust[u].thrust),o=null!==t.thrust[u].afterBurnerThrust?6*t.thrust[u].afterBurnerThrust:n;l=6*Number(t.thrust[u].reverseThrust),console.log(t.thrust),console.log(n),s.thrust=n,void 0!==s.afterBurnerThrust&&(s.afterBurnerThrust=o),void 0!==s.reverseThrust&&(s.reverseThrust=l)}}}}(),globalThis.isOverpowered=!0,console.log("Aircraft properties set to overpowered mode.")))}),console.log("Press 'Q' to toggle aircraft properties between normal and overpowered."),setInterval(()=>{let e=geofs?.aircraft?.instance?.aircraftRecord?.id||null;e!==r&&(console.log("Aircraft changed, resetting toggle."),t={thrust:{},zeroThrustAltitude:null,zeroRPMAltitude:null},globalThis.isOverpowered=!1,r=e)},500)}toggleAircraftProperties();
+        //var opScript = document.createElement('script'); opScript.src="https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/opengines.js";document.body.appendChild(opScript);
+        // ==UserScript==
+// @name         GeoFS Overpowered engines
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  sets engine performance really high
+// @author       geofs-pilot
+// @match        https://www.geo-fs.com/*
+// @grant        none
+// ==/UserScript==
+
+let originalValues = { thrust: {}, zeroThrustAltitude: null, zeroRPMAltitude: null };
+
+function toggleAircraftProperties() {
+    globalThis.isOverpowered = false;
+    let lastAircraftID = geofs?.aircraft?.instance?.aircraftRecord?.id || null;
+    let mass = geofs.aircraft.instance.definition.mass;
+    let thrustBoostFactor = 6;
+
+    function applyOverpoweredProperties() {
+    if (geofs?.aircraft?.instance) {
+        const aircraft = geofs.aircraft.instance;
+        mass = aircraft.definition.mass;
+
+        if (originalValues.zeroThrustAltitude === null && aircraft.definition?.zeroThrustAltitude !== undefined) {
+            originalValues.zeroThrustAltitude = aircraft.definition.zeroThrustAltitude;
+        }
+
+        if (originalValues.zeroRPMAltitude === null && aircraft.definition?.zeroRPMAltitude !== undefined) {
+            originalValues.zeroRPMAltitude = aircraft.definition.zeroRPMAltitude;
+        }
+
+        if (aircraft.definition) {
+            aircraft.definition.zeroThrustAltitude = 300000;
+            aircraft.definition.zeroRPMAltitude = 300000;
+        }
+
+        if (aircraft.parts) {
+            for (let partName in aircraft.parts) {
+                let part = aircraft.parts[partName];
+                if (part?.thrust !== undefined) {
+                    if (!originalValues.thrust[partName]) {
+                        originalValues.thrust[partName] = {
+                            thrust: part.thrust,
+                            afterBurnerThrust: part.afterBurnerThrust || null,
+                            reverseThrust: part.reverseThrust || null
+                        };
+                    }
+
+                    let thrustValue, afterburnerValue, reverseValue;
+
+                    let numThrust = Number(originalValues.thrust[partName].thrust);
+                    thrustValue = numThrust * thrustBoostFactor;
+                    if (originalValues.thrust[partName].afterBurnerThrust !== null) {
+                        afterburnerValue = originalValues.thrust[partName].afterBurnerThrust * thrustBoostFactor;
+                    } else {
+                        afterburnerValue = thrustValue;
+                    }
+
+                    let numReverse = Number(originalValues.thrust[partName].reverseThrust);
+                    reverseValue = numReverse * thrustBoostFactor
+                    console.log(originalValues.thrust);
+                    console.log(thrustValue);
+                    part.thrust = thrustValue;
+                    if (part.afterBurnerThrust !== undefined) {
+                        part.afterBurnerThrust = afterburnerValue;
+                    }
+                    if (part.reverseThrust !== undefined) {
+                        part.reverseThrust = reverseValue;
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+
+    function applyNormalProperties() {
+        if (geofs?.aircraft?.instance) {
+            const aircraft = geofs.aircraft.instance;
+
+            if (aircraft.definition) {
+                if (originalValues.zeroThrustAltitude !== null) {
+                    aircraft.definition.zeroThrustAltitude = originalValues.zeroThrustAltitude;
+                }
+                if (originalValues.zeroRPMAltitude !== null) {
+                    aircraft.definition.zeroRPMAltitude = originalValues.zeroRPMAltitude;
+                }
+            }
+
+            if (aircraft.parts) {
+                for (let partName in originalValues.thrust) {
+                    let part = aircraft.parts[partName];
+
+                    if (part?.thrust !== undefined) {
+                        part.thrust = originalValues.thrust[partName].thrust;
+                        if (part.afterBurnerThrust !== undefined && originalValues.thrust[partName].afterBurnerThrust !== null) {
+                            part.afterBurnerThrust = originalValues.thrust[partName].afterBurnerThrust;
+                        }
+
+                        if (part.reverseThrust !== undefined && originalValues.thrust[partName].reverseThrust !== null) {
+                            part.reverseThrust = originalValues.thrust[partName].reverseThrust;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function toggleProperties() {
+        if (globalThis.isOverpowered) {
+            applyNormalProperties();
+            globalThis.isOverpowered = false;
+            console.log("Aircraft properties set to normal.");
+            ui.notification.show("Aircraft properties set to normal.");
+            setTimeout(() => {
+                document.querySelectorAll(".geofs-haring").forEach(el => el.remove());
+            }, 3000);
+
+        } else {
+            applyOverpoweredProperties();
+            globalThis.isOverpowered = true;
+            console.log("Aircraft properties set to overpowered mode.");
+            ui.notification.show("Aircraft properties set to overpowered mode.");
+            setTimeout(() => {
+                document.querySelectorAll(".geofs-haring").forEach(el => el.remove());
+            }, 3000);
+
+        }
+    }
+
+    document.addEventListener("keydown", function (event) {
+    if (event.key.toLowerCase() === "u"  && !event.ctrlKey && !event.altKey && !event.metaKey) {
+        toggleProperties();
+    }
+});
+
+
+    console.log("Press 'Q' to toggle aircraft properties between normal and overpowered.");
+
+    // Monitor aircraft changes
+    setInterval(() => {
+        let currentAircraftID = geofs?.aircraft?.instance?.aircraftRecord?.id || null;
+        if (currentAircraftID !== lastAircraftID) {
+            console.log("Aircraft changed, resetting toggle.");
+            originalValues = { thrust: {}, zeroThrustAltitude: null, zeroRPMAltitude: null };
+            globalThis.isOverpowered = false;
+            lastAircraftID = currentAircraftID;
+        }
+    }, 500); // Check every 500ms
+}
+ toggleAircraftProperties();
+ var oscillationScript = document.createElement('script'); oscillationScript.src="https://raw.githack.com/geofs-pilot/GeoFS-Autopilot-High-Speed-Damper/refs/heads/main/main.js";document.body.appendChild(oscillationScript);
     };
 
     function pushback () {
@@ -2087,82 +2354,82 @@ out skel qt;
     function utilities() {
         var utilScript = document.createElement('script'); utilScript.src="https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/utilities.js";document.body.appendChild(utilScript);
     }
-    ai();
-    adblock();
-    autoland();
-    athrottle();
-    camera();
-    //charts(); temporarily broken
-    chatFix();
-    volume();
-    maritime();
-    failuresAndFuel();
-    fpv();
-    flightradar();
-    gpws();
-    stats();
+    // ai();
+    // adblock();
+    // autoland();
+    // athrottle();
+    // camera();
+    // //charts(); temporarily broken
+    // chatFix();
+    // volume();
+    // maritime();
+    // failuresAndFuel();
+    // fpv();
+    // flightradar();
+    // gpws();
+    // stats();
     opengines();
-    pushback();
-    dolly();
-    slew();
-    twlights();
-    twsigns();
-    tweaks();
-    utilities();
-    info();
+    // pushback();
+    // dolly();
+     slew();
+    // twlights();
+    // twsigns();
+    // tweaks();
+    // utilities();
+    // info();
 
-    //wait for jobs button to appear
-    let realismRun = false;
-    const jobsBtn = Array.from(document.querySelectorAll(".control-pad-label.transp-pad"))
-    .find(el => el.textContent.trim() === "JOBS");
-    if (jobsBtn && !realismRun) {
-        realism();
-        realismRun = true;
-    }
-    const jobsObserver = new MutationObserver(() => {
-        const jobsBtn = Array.from(document.querySelectorAll(".control-pad-label.transp-pad"))
-        .find(el => el.textContent.trim() === "JOBS");
-        if (jobsBtn && !realismRun) {
-            realism();
-            realismRun = true;
-            jobsObserver.disconnect();
-        }
-    });
-    jobsObserver.observe(document.body, { childList: true, subtree: true });
+    // //wait for jobs button to appear
+    // let realismRun = false;
+    // const jobsBtn = Array.from(document.querySelectorAll(".control-pad-label.transp-pad"))
+    // .find(el => el.textContent.trim() === "JOBS");
+    // if (jobsBtn && !realismRun) {
+    //     realism();
+    //     realismRun = true;
+    // }
+    // const jobsObserver = new MutationObserver(() => {
+    //     const jobsBtn = Array.from(document.querySelectorAll(".control-pad-label.transp-pad"))
+    //     .find(el => el.textContent.trim() === "JOBS");
+    //     if (jobsBtn && !realismRun) {
+    //         realism();
+    //         realismRun = true;
+    //         jobsObserver.disconnect();
+    //     }
+    // });
+    // jobsObserver.observe(document.body, { childList: true, subtree: true });
 
-    //wait for liveryselector button to appear
-    let scriptRun = false;
-    const LSBtn = document.getElementById("liverybutton");
-    if (LSBtn && !scriptRun) {
-        vehicles();
-        scriptRun = true;
-    }
-    const observer = new MutationObserver(() => {
-        const LSBtn = document.getElementById("liverybutton");
-        if (LSBtn && !scriptRun) {
-            vehicles();
-            scriptRun = true;
-            observer.disconnect();
-        }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
+    // //wait for liveryselector button to appear
+    // let scriptRun = false;
+    // const LSBtn = document.getElementById("liverybutton");
+    // if (LSBtn && !scriptRun) {
+    //     vehicles();
+    //     scriptRun = true;
+    // }
+    // const observer = new MutationObserver(() => {
+    //     const LSBtn = document.getElementById("liverybutton");
+    //     if (LSBtn && !scriptRun) {
+    //         vehicles();
+    //         scriptRun = true;
+    //         observer.disconnect();
+    //     }
+    // });
+    // observer.observe(document.body, { childList: true, subtree: true });
 
-    //wait for extras button to appear
-    let scriptsRun = false;
-    const extrasBtn = document.getElementById("extras-button");
-    if (extrasBtn && !scriptsRun) {
-        jetbridge();
-        scriptsRun = true;
-    }
-    const extrasObserver = new MutationObserver(() => {
-        const extrasBtn = document.getElementById("extras-button");
-        if (extrasBtn && !scriptsRun) {
-            jetbridge();
-            scriptsRun = true;
-            extrasObserver.disconnect();
-        }
-    });
-    extrasObserver.observe(document.body, { childList: true, subtree: true });
+    // //wait for extras button to appear
+    // let scriptsRun = false;
+    // const extrasBtn = document.getElementById("extras-button");
+    // if (extrasBtn && !scriptsRun) {
+    //     jetbridge();
+    //     scriptsRun = true;
+    // }
+    // const extrasObserver = new MutationObserver(() => {
+    //     const extrasBtn = document.getElementById("extras-button");
+    //     if (extrasBtn && !scriptsRun) {
+    //         jetbridge();
+    //         scriptsRun = true;
+    //         extrasObserver.disconnect();
+    //     }
+    // });
+    // extrasObserver.observe(document.body, { childList: true, subtree: true });
 }
 
 const waitForGeoFS = setInterval(() => {
