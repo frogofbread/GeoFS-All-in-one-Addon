@@ -90,7 +90,7 @@ https://github.com/CementAndRebar/GeoFS-Extra-Maritime-Structures/tree/main <br/
 https://github.com/af267/GeoFS-Extra-Vehicles/tree/main <br/>
 https://github.com/tylerbmusic/GeoFS-Failures <br/>
 https://github.com/tylerbmusic/GeoFS-Flight-Path-Vector <br/>
-https://github.com/geofs-pilot/GeoFS-flightradar <br/>
+https://github.com/seabus0316/GeoFS-flightradar <br/>
 https://github.com/geofs-pilot/GeoFS-Fuel <br/>
 https://github.com/tylerbmusic/GeoFS-GPWS-Callouts <br/>
 https://github.com/RadioactivePotato/GeoFS-Information-Display <br/>
