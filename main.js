@@ -496,16 +496,6 @@ function menus() {
         
             //INSTRUCTIONS GO HERE:
         const descriptions = {
-            'Preflight procedures': `Review procedures
-            Load/create flight plan
-            Check METAR, decide on VFR or IFR
-            Check elevations of departure and arrival airports
-            Choose suitable cruise altitude (for short flights, 10x distance eg. 150nm→15000ft)
-            Check duration, fuel range, choose suitable aircraft
-            Calculate top of descent (0.003x cruise alt minus airport elevation)
-            Load in aircraft at gate, recheck everything, check controls, pushback`,
-
-
             'VFR rules': `
             1. Weather Minimums:
             Maintain specific visibility and cloud clearance (refer to below).
@@ -759,6 +749,16 @@ function menus() {
             Usage: This airspace is used primarily in rural and less-traveled areas.`,
 
 
+            'Preflight procedures': `Review procedures
+            Load/create flight plan
+            Check METAR, decide on VFR or IFR
+            Check elevations of departure and arrival airports
+            Choose suitable cruise altitude (for short flights, 10x distance eg. 150nm→15000ft)
+            Check duration, fuel range, choose suitable aircraft
+            Calculate top of descent (0.003x cruise alt minus airport elevation)
+            Load in aircraft at gate, recheck everything, check controls, pushback`,
+
+
             'ATC procedures': `1. Preflight and Clearance
             Pilot (to Clearance Delivery):
             "JFK Clearance, American 123, IFR to Miami, ready to copy clearance."
@@ -933,10 +933,10 @@ function menus() {
             instructionListItem.appendChild(instructionContent);
         }
         //INSTRUCTION ITEMS GO HERE:
-        addInstruction('Preflight procedures');
         addInstruction('VFR rules');
         addInstruction('IFR rules');
         addInstruction('Other rules, METAR, sectional charts, airspace');
+        addInstruction('Preflight procedures');
         addInstruction('ATC procedures');
         addInstruction('Climb procedures');
         addInstruction('Descent procedures');
@@ -1313,12 +1313,16 @@ function menus() {
             Resources panel
             Changelog panel
             Update to Other Rules section
+            Placed Preflight procedures with procedures for other phases of flight 
             Other improvements:
-            Pushback addon uses original script (previously it was a modified version)
+            Pushback addon now uses original script (previously it was a modified version)
             New Overpowered Engines with a roll and pitch oscillation damper
             `,
-            'Version 2': `Previously tampermonkey-exclusive scripts 
-            Running the bookmarklet or main.js will have full functionality of the tampermonkey scripts. Also, the addon GeoFS-Chat-Fix has been added, AI ATC now has a toggle so that pressing D can either open the text or voice input, and pressing [/] now toggles autothrottle. Joystick support has also been added to autoland++. See instructions for further details.`
+            'Version 2': `Previously tampermonkey-exclusive scripts can now run in the console (no installation required).
+            Added GeoFS-Chat-Fix by ZetaPossibly 
+            Toggle for AI ATC PTT key function (right click the icon and choose between transmitting text or voice)
+            [/] is now a toggle key for autothrottle. 
+            Added joystick compatibility for Autoland++`
         };
 
 
@@ -1363,6 +1367,7 @@ function menus() {
         }
         //changelog ITEMS HERE:
         addchangelog('Version 3.0.0');
+        addchangelog('Version 2');
 
         geofsPreferencesPanel.appendChild(changelogListItem);
     }
