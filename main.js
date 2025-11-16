@@ -2212,7 +2212,7 @@ out skel qt;
     // autoland();
     // athrottle();
     // camera();
-    // //charts(); temporarily broken
+    // charts();
     // chatFix();
     // volume();
     // maritime();
