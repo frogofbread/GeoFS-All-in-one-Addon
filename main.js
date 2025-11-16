@@ -1316,7 +1316,9 @@ function menus() {
             Other improvements:
             Pushback addon uses original script (previously it was a modified version)
             New Overpowered Engines with a roll and pitch oscillation damper
-            `
+            `,
+            'Version 2': `Previously tampermonkey-exclusive scripts 
+            Running the bookmarklet or main.js will have full functionality of the tampermonkey scripts. Also, the addon GeoFS-Chat-Fix has been added, AI ATC now has a toggle so that pressing D can either open the text or voice input, and pressing [/] now toggles autothrottle. Joystick support has also been added to autoland++. See instructions for further details.`
         };
 
 
