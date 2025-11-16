@@ -1972,7 +1972,7 @@ function addonExecution () {
     };
 
     function flightradar () {
-        var frScript = document.createElement('script'); frScript.src="https://raw.githack.com/geofs-pilot/GeoFS-All-in-one-addon-externals/refs/heads/main/flightradar.js";document.body.appendChild(frScript);
+        var frScript = document.createElement('script'); frScript.src="https://raw.githack.com/seabus0316/GeoFS-flightradar/refs/heads/main/userscript.js";document.body.appendChild(frScript);
     };
 
     function gpws () {
