@@ -408,11 +408,9 @@ function menus() {
         addAddon('Autothrottle');
         addAddon('Better NAV Map');
         addAddon('Extra vehicles');
-        addAddon('Failures');
         addAddon('Flight path vector');
         addAddon('Fuel');
         addAddon('GPWS');
-        addAddon('Information display');
         addAddon('Jetbridge');
         addAddon('Landing stats');
         geofsPreferencesPanel.appendChild(addonListItem);
