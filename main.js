@@ -407,29 +407,10 @@ function menus() {
         addAddon('Ad remover');
         addAddon('Autoland++');
         addAddon('Autothrottle');
-        addAddon('Better NAV Map');
-        addAddon('Camera cycling');
-        addAddon('Charts');
-        addAddon('Chat fix');
-        addAddon('Cockpit volume');
-        addAddon('Extra vehicles');
-        addAddon('Failures');
-        addAddon('Flight path vector');
+        addAddon('Better NAV Map')
         addAddon('Fuel');
         addAddon('GPWS');
         addAddon('Information display');
-        addAddon('Jetbridge');
-        addAddon('Landing stats');
-        addAddon('Overpowered engines');
-        addAddon('Pushback');
-        addAddon('Random Jobs')
-        addAddon('Realism pack');
-        addAddon('Sky Dolly');
-        addAddon('Slew mode');
-        addAddon('Taxiway lights');
-        addAddon('Taxiway signs');
-        addAddon('UI tweaks');
-
 
         geofsPreferencesPanel.appendChild(addonListItem);
     }
